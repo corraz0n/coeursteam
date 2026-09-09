@@ -1,0 +1,1375 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CoeurSteam — Boutique digitale premium."
+    >
+
+    <title>CoeurSteam — Boutique digitale</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         EFFETS D'ARRIÈRE-PLAN
+    ====================================================== -->
+
+    <div class="noise"></div>
+
+    <div class="background-glow"></div>
+
+    <div
+        class="ambient-particles"
+        aria-hidden="true"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div
+        class="golden-line golden-line-one"
+        aria-hidden="true"
+    ></div>
+
+    <div
+        class="golden-line golden-line-two"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- =====================================================
+         BARRE SUPÉRIEURE
+    ====================================================== -->
+
+    <div class="top-bar">
+
+        <div class="developer">
+
+            <span>DÉVELOPPÉ PAR</span>
+
+            <strong>CORRAZ0N</strong>
+
+        </div>
+
+
+        <div class="online-status">
+
+            <span class="status-dot"></span>
+
+            SUPPORT EN LIGNE
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav class="navbar">
+
+        <a
+            href="/"
+            class="logo"
+        >
+
+            <span class="logo-symbol">✦</span>
+
+            <span>
+                Coeur<span>Steam</span>
+            </span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="/">
+                Accueil
+            </a>
+
+            <a href="/steam">
+                Steam
+            </a>
+
+            <a href="/epic">
+                Epic Games
+            </a>
+
+            <a href="/playstation">
+                PlayStation
+            </a>
+
+            <a href="#support">
+                Support
+            </a>
+
+            <a href="#instagram">
+                Instagram
+            </a>
+
+            <a href="/admin/orders">
+                COMMANDES
+            </a>
+
+<a href="https://discord.gg/CMYJEjCTk3" target="_blank">
+    DISCORD
+</a>
+
+        </div>
+
+
+        <button
+            class="cart-button"
+            type="button"
+            onclick="toggleCart()"
+        >
+
+            PANIER
+
+            <span
+                id="cartCount"
+                class="cart-count"
+            >
+                0
+            </span>
+
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         CONTENU PRINCIPAL
+    ====================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section
+            id="home"
+            class="hero"
+        >
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+
+                    <span></span>
+
+                    DIGITAL STORE / 2026
+
+                </p>
+
+
+                <h1>
+
+                    Le gaming,
+
+                    <br>
+
+                    <em>
+                        autrement.
+                    </em>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Découvrez CoeurSteam, une boutique digitale
+                    pensée pour proposer une expérience simple,
+                    élégante et professionnelle.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="/steam"
+                        class="primary-button"
+                    >
+
+                        CATALOGUE STEAM
+
+                        <span>→</span>
+
+                    </a>
+
+
+                    <a
+                        href="#support"
+                        class="secondary-button"
+                    >
+
+                        SUPPORT
+
+                    </a>
+
+                </div>
+
+
+                <div class="creator-card">
+
+                    <div class="creator-icon">
+                        ✦
+                    </div>
+
+
+                    <div>
+
+                        <span class="creator-label">
+                            SITE DÉVELOPPÉ PAR
+                        </span>
+
+                        <strong>
+                            CORRAZ0N
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-emblem">
+
+                <div class="emblem-ring ring-one"></div>
+
+                <div class="emblem-ring ring-two"></div>
+
+                <div class="emblem-ring ring-three"></div>
+
+                <div class="emblem-heart">
+                    ♡
+                </div>
+
+                <span class="emblem-top">
+                    COEUR
+                </span>
+
+                <span class="emblem-bottom">
+                    STEAM
+                </span>
+
+            </div>
+
+
+            <div class="scroll-indicator">
+
+                <span>
+                    SCROLL
+                </span>
+
+                <div></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             INSTAGRAM
+        ================================================== -->
+
+        <section
+            id="instagram"
+            class="instagram-section"
+        >
+
+            <div class="instagram-content">
+
+                <div class="instagram-symbol">
+                    ◎
+                </div>
+
+
+                <div>
+
+                    <p class="eyebrow">
+
+                        <span></span>
+
+                        RÉSEAUX SOCIAUX
+
+                    </p>
+
+
+                    <h2>
+
+                        Suivez
+
+                        <em>
+                            Corraz0n.
+                        </em>
+
+                    </h2>
+
+
+                    <p>
+
+                        Retrouvez les actualités, nouveautés
+                        et informations de CoeurSteam
+                        sur Instagram.
+
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="https://www.instagram.com/corraz0n/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="instagram-button"
+                >
+
+                    INSTAGRAM
+
+                    <span>↗</span>
+
+                </a>
+
+            </div>
+
+
+            <div class="instagram-contact">
+
+                <span>
+                    INSTAGRAM CONTACT
+                </span>
+
+                <strong>
+                    Corraz0n
+                </strong>
+
+                <a
+                    href="https://www.instagram.com/corraz0n/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    instagram.com/corraz0n
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TENDANCES DU MOMENT — ACCUEIL
+        ================================================== -->
+
+        {% if request.path == "/" %}
+
+        <section
+            id="trending"
+            class="trending-section"
+        >
+
+            <div class="decorative-orbit orbit-left"></div>
+
+            <div class="decorative-orbit orbit-right"></div>
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="eyebrow">
+
+                        <span></span>
+
+                        SÉLECTION COEURSTEAM
+
+                    </p>
+
+
+                    <h2>
+
+                        Tendances
+
+                        <em>
+                            du moment.
+                        </em>
+
+                    </h2>
+
+
+                    <p class="section-description">
+
+                        Découvrez une sélection de jeux
+                        mis en avant sur CoeurSteam.
+
+                    </p>
+
+                </div>
+
+
+                <div class="trending-badge">
+
+                    <span class="status-dot"></span>
+
+                    SÉLECTION DU MOMENT
+
+                </div>
+
+            </div>
+
+
+            <div class="trending-track">
+
+                {% for product in trending_products %}
+
+                <article
+                    class="product-card trending-card"
+                    data-product-id="{{ product.id }}"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="{{ url_for('static', filename=product.image) }}"
+                            alt="{{ product.name }}"
+                            loading="lazy"
+                        >
+
+                        <span class="product-tag">
+                            {{ product.tag }}
+                        </span>
+
+                        <span class="trending-label">
+                            TENDANCE
+                        </span>
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <h3>
+                            {{ product.name }}
+                        </h3>
+
+
+                        <div class="product-footer">
+
+                            <div class="price">
+
+                                <small>
+                                    À PARTIR DE
+                                </small>
+
+                                <strong>
+                                    {{ "%.2f"|format(product.price)|replace(".", ",") }} €
+                                </strong>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="add-button"
+                                data-product-id="{{ product.id }}"
+                            >
+
+                                AJOUTER
+
+                                <span>+</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="trending-footer">
+
+                <span>✦</span>
+
+                NOUVEAUTÉS • GAMING • DIGITAL • COEURSTEAM
+
+                <span>✦</span>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+        <!-- =================================================
+             CATALOGUE
+        ================================================== -->
+
+        <section
+            id="shop"
+            class="shop-section"
+        >
+
+            <div class="catalogue-decoration catalogue-decoration-left">
+                ✦
+            </div>
+
+            <div class="catalogue-decoration catalogue-decoration-right">
+                ✦
+            </div>
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="eyebrow">
+
+                        <span></span>
+
+                        CATALOGUE
+
+                    </p>
+
+
+                    {% if request.path == "/steam" %}
+
+                    <h2>
+
+                        Catalogue
+
+                        <em>
+                            Steam.
+                        </em>
+
+                    </h2>
+
+
+                    <p class="section-description">
+
+                        Retrouvez notre sélection de produits Steam.
+
+                    </p>
+
+
+                    {% elif request.path == "/epic" %}
+
+                    <h2>
+
+                        Catalogue
+
+                        <em>
+                            Epic Games.
+                        </em>
+
+                    </h2>
+
+
+                    <p class="section-description">
+
+                        Retrouvez notre sélection de produits
+                        Epic Games.
+
+                    </p>
+
+
+                    {% elif request.path == "/playstation" %}
+
+                    <h2>
+
+                        Catalogue
+
+                        <em>
+                            PlayStation.
+                        </em>
+
+                    </h2>
+
+
+                    <p class="section-description">
+
+                        Retrouvez notre sélection de produits
+                        PlayStation.
+
+                    </p>
+
+
+                    {% else %}
+
+                    <h2>
+
+                        Nos
+
+                        <em>
+                            produits.
+                        </em>
+
+                    </h2>
+
+
+                    <p class="section-description">
+
+                        Sélectionnez une plateforme pour découvrir
+                        les produits disponibles.
+
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="security-badge">
+
+                    <span>
+                        ✓
+                    </span>
+
+
+                    <div>
+
+                        <strong>
+                            PAIEMENT SÉCURISÉ
+                        </strong>
+
+                        <small>
+                            Paiement sécurisé côté serveur
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PLATEFORMES — ACCUEIL
+            ================================================== -->
+
+            {% if request.path == "/" %}
+
+            <div class="platform-grid">
+
+
+                <a
+                    href="/steam"
+                    class="platform-card steam-platform"
+                >
+
+                    <div class="platform-card-icon">
+                        S
+                    </div>
+
+
+                    <div class="platform-card-content">
+
+                        <span>
+                            PLATEFORME
+                        </span>
+
+                        <h3>
+                            Steam
+                        </h3>
+
+                        <p>
+                            Découvrir le catalogue Steam
+                        </p>
+
+                    </div>
+
+
+                    <strong>
+                        →
+                    </strong>
+
+                </a>
+
+
+                <a
+                    href="/epic"
+                    class="platform-card epic-platform"
+                >
+
+                    <div class="platform-card-icon">
+                        E
+                    </div>
+
+
+                    <div class="platform-card-content">
+
+                        <span>
+                            PLATEFORME
+                        </span>
+
+                        <h3>
+                            Epic Games
+                        </h3>
+
+                        <p>
+                            Découvrir le catalogue Epic Games
+                        </p>
+
+                    </div>
+
+
+                    <strong>
+                        →
+                    </strong>
+
+                </a>
+
+
+                <a
+                    href="/playstation"
+                    class="platform-card playstation-platform"
+                >
+
+                    <div class="platform-card-icon">
+                        P
+                    </div>
+
+
+                    <div class="platform-card-content">
+
+                        <span>
+                            PLATEFORME
+                        </span>
+
+                        <h3>
+                            PlayStation
+                        </h3>
+
+                        <p>
+                            Découvrir le catalogue PlayStation
+                        </p>
+
+                    </div>
+
+
+                    <strong>
+                        →
+                    </strong>
+
+                </a>
+
+            </div>
+
+            {% endif %}
+
+
+            <!-- =================================================
+                 PRODUITS
+            ================================================== -->
+
+            {% if products %}
+
+            <div class="products-grid">
+
+                {% for product in products %}
+
+                <article
+                    class="product-card"
+                    data-product-id="{{ product.id }}"
+                >
+
+                    <div class="product-image">
+
+                        <img 
+    src="{{ url_for('static', filename=product.image) }}" 
+    alt="{{ product.name }}" 
+    loading="lazy"
+>
+
+
+                        <span class="product-tag">
+                            {{ product.tag }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <h3>
+                            {{ product.name }}
+                        </h3>
+
+
+                        <div class="product-footer">
+
+                            <div class="price">
+
+                                <small>
+                                    À PARTIR DE
+                                </small>
+
+                                <strong>
+                                    {{ "%.2f"|format(product.price)|replace(".", ",") }} €
+                                </strong>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="add-button"
+                                data-product-id="{{ product.id }}"
+                            >
+
+                                AJOUTER
+
+                                <span>
+                                    +
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+
+            {% else %}
+
+            <div class="empty-catalogue">
+
+                <div class="empty-catalogue-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Catalogue en préparation
+                </h3>
+
+                <p>
+                    Aucun produit n'est actuellement disponible
+                    sur cette plateforme.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- =================================================
+             SUPPORT
+        ================================================== -->
+
+        <section
+            id="support"
+            class="support-section"
+        >
+
+            <div class="support-content">
+
+                <p class="eyebrow">
+
+                    <span></span>
+
+                    ASSISTANCE
+
+                </p>
+
+
+                <h2>
+
+                    Besoin
+
+                    <em>
+                        d'aide ?
+                    </em>
+
+                </h2>
+
+
+                <p>
+
+                    Une question concernant une commande,
+                    un produit ou le fonctionnement du site ?
+
+                    Notre support est disponible pour vous
+                    accompagner.
+
+                </p>
+
+
+                <a
+                    href="https://www.instagram.com/corraz0n/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="primary-button"
+                >
+
+                    CONTACTER LE SUPPORT
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <div class="support-card">
+
+                <div class="support-icon">
+                    ✦
+                </div>
+
+                <span>
+                    SUPPORT
+                </span>
+
+                <strong>
+                    EN LIGNE
+                </strong>
+
+                <small>
+                    Réponse rapide
+                </small>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         PANIER
+    ====================================================== -->
+
+    <div
+        id="cartOverlay"
+        class="cart-overlay"
+        onclick="toggleCart()"
+    ></div>
+
+
+    <aside
+        id="cartDrawer"
+        class="cart-drawer"
+    >
+
+        <div class="cart-header">
+
+            <div>
+
+                <p class="eyebrow">
+
+                    <span></span>
+
+                    COMMANDE
+
+                </p>
+
+
+                <h3>
+                    Votre panier
+                </h3>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="close-cart"
+                onclick="toggleCart()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="cartItems"
+            class="cart-items"
+        >
+
+            <div class="empty-cart">
+
+                <span>
+                    ♡
+                </span>
+
+                <p>
+                    Votre panier est vide.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="cart-summary">
+
+            <div>
+
+                <span>
+                    TOTAL
+                </span>
+
+                <strong id="cartTotal">
+                    0,00 €
+                </strong>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="checkout-button"
+                onclick="checkout()"
+            >
+
+                CONTINUER VERS LE PAIEMENT
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+            <p class="checkout-note">
+
+                Vous serez redirigé vers Stripe
+                pour finaliser votre commande.
+
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         ÉCRAN D'ACCUEIL / CONDITIONS
+    ====================================================== -->
+
+    <div
+        id="welcomeScreen"
+        class="welcome-screen"
+    >
+
+        <div class="welcome-content">
+
+
+            <div class="welcome-logo">
+
+                COEUR<span>STEAM</span>
+
+            </div>
+
+
+            <div class="welcome-line"></div>
+
+
+            <p class="welcome-developer">
+                DÉVELOPPÉ PAR
+            </p>
+
+
+            <h1 class="welcome-name">
+                CORRAZ0N
+            </h1>
+
+
+            <!-- =============================================
+                 CONDITIONS SCROLLABLES
+            ============================================== -->
+
+            <div
+                id="welcomeTerms"
+                class="welcome-terms"
+            >
+
+                <h2>
+                    CONDITIONS GÉNÉRALES
+                </h2>
+
+
+                <p>
+
+                    Bienvenue sur CoeurSteam.
+
+                    Avant d'utiliser notre site et
+                    d'effectuer un achat, veuillez lire
+                    attentivement les informations
+                    ci-dessous.
+
+                </p>
+
+
+                <h3>
+                    01 — FONCTIONNEMENT DES ACHATS
+                </h3>
+
+
+                <p>
+
+                    Les produits proposés sur CoeurSteam
+                    sont des produits numériques.
+
+                    Vérifiez toujours la description du
+                    produit ainsi que les modalités de
+                    livraison avant votre achat.
+
+                </p>
+
+
+                <h3>
+                    02 — PRODUITS NUMÉRIQUES
+                </h3>
+
+
+                <p>
+
+                    Les produits numériques sont fournis
+                    selon les conditions indiquées sur
+                    leur fiche produit.
+
+                    L'acheteur est responsable de vérifier
+                    la compatibilité du produit avec sa
+                    plateforme et sa région avant de
+                    commander.
+
+                </p>
+
+
+                <h3>
+                    03 — SÉCURISATION
+                </h3>
+
+
+                <p>
+
+                    Nous recommandons fortement de protéger
+                    immédiatement toutes les informations
+                    de sécurité reçues et de ne jamais
+                    communiquer vos identifiants à une
+                    personne non autorisée.
+
+                </p>
+
+
+                <h3>
+                    04 — AVANT DE COMMANDER
+                </h3>
+
+
+                <p>
+
+                    Vérifiez attentivement la description,
+                    le contenu et les modalités de livraison
+                    du produit avant de confirmer votre achat.
+
+                </p>
+
+
+                <h3>
+                    05 — SUPPORT
+                </h3>
+
+
+                <p>
+
+                    En cas de question ou de problème
+                    concernant votre commande, notre support
+                    reste disponible pour vous accompagner.
+
+                </p>
+
+
+                <h3>
+                    06 — DÉVELOPPEMENT
+                </h3>
+
+
+                <p>
+
+                    CoeurSteam est développé par
+                    <strong>CORRAZ0N</strong>.
+
+                    Le projet est continuellement amélioré
+                    afin de proposer une expérience d'achat
+                    simple, claire et professionnelle.
+
+                </p>
+
+
+                <h3>
+                    07 — SOUTENEZ LE PROJET
+                </h3>
+
+
+                <p>
+
+                    Merci de soutenir CoeurSteam et son
+                    développement.
+
+                </p>
+
+
+                <a
+                    href="https://www.instagram.com/corraz0n/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="welcome-instagram"
+                >
+
+                    @corraz0n — INSTAGRAM
+
+                </a>
+
+
+                <p class="welcome-final">
+
+                    Merci pour votre confiance et bienvenue
+                    sur CoeurSteam.
+
+                </p>
+
+            </div>
+
+
+            <!-- =============================================
+                 MESSAGE DE DÉFILEMENT
+            ============================================== -->
+
+            <p class="welcome-scroll-message">
+
+                Faites défiler les conditions jusqu'en bas
+                pour continuer.
+
+            </p>
+
+
+            <!-- =============================================
+                 CHECKBOX
+            ============================================== -->
+
+            <label
+                id="welcomeCheckboxLabel"
+                class="welcome-checkbox-label disabled"
+            >
+
+                <input
+                    type="checkbox"
+                    id="welcomeCheckbox"
+                    disabled
+                >
+
+                <span class="custom-checkbox"></span>
+
+
+                <span>
+
+                    J'ai lu et j'accepte les
+                    conditions générales.
+
+                </span>
+
+            </label>
+
+
+            <!-- =============================================
+                 BOUTON ENTRER
+            ============================================== -->
+
+            <button
+                type="button"
+                id="enterSiteButton"
+                class="welcome-enter-button"
+                disabled
+            >
+
+                ENTRER SUR COEURSTEAM
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+            <p class="welcome-footer">
+
+                COEURSTEAM • DÉVELOPPÉ PAR CORRAZ0N
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+</body>
+
+</html>
+```

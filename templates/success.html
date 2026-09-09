@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Paiement confirmé — CoeurSteam</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+
+        background:
+            radial-gradient(
+                circle at 50% 0%,
+                rgba(245, 180, 0, 0.15),
+                transparent 45%
+            ),
+            #080808;
+
+        color: #ffffff;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+        width: 100%;
+        max-width: 650px;
+    }
+
+    .card {
+        width: 100%;
+        padding: 45px 35px;
+        text-align: center;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.035),
+                rgba(255, 255, 255, 0.01)
+            ),
+            #111111;
+
+        border: 1px solid rgba(245, 180, 0, 0.35);
+        border-radius: 22px;
+
+        box-shadow:
+            0 30px 80px rgba(0, 0, 0, 0.7),
+            0 0 50px rgba(245, 180, 0, 0.05);
+    }
+
+    .logo {
+        margin-bottom: 35px;
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: 3px;
+    }
+
+    .logo span {
+        color: #f5b400;
+    }
+
+    .success-icon {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 28px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 2px solid #f5b400;
+        border-radius: 50%;
+
+        color: #f5b400;
+        font-size: 48px;
+        font-weight: 900;
+
+        box-shadow:
+            0 0 30px rgba(245, 180, 0, 0.15);
+    }
+
+    h1 {
+        margin: 0 0 15px;
+
+        font-size: 34px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .description {
+        margin: 0 auto 30px;
+        max-width: 500px;
+
+        color: #aaaaaa;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .payment-box {
+        margin: 30px 0;
+        padding: 22px;
+
+        background: #0a0a0a;
+        border: 1px solid #292929;
+        border-radius: 14px;
+
+        text-align: left;
+    }
+
+    .payment-label {
+        display: block;
+        margin-bottom: 9px;
+
+        color: #777777;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .payment-reference {
+        display: block;
+
+        color: #f5b400;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.6;
+
+        word-break: break-all;
+    }
+
+    .payment-status {
+        margin-top: 15px;
+
+        color: #7fd68a;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .payment-status::before {
+        content: "●";
+        margin-right: 7px;
+    }
+
+    .continue-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+
+        width: 100%;
+        padding: 17px 20px;
+
+        border: 0;
+        border-radius: 11px;
+
+        background: #f5b400;
+        color: #080808;
+
+        text-decoration: none;
+
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: 1px;
+
+        cursor: pointer;
+
+        transition:
+            transform 0.2s ease,
+            background 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .continue-button:hover {
+        background: #ffd34f;
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 10px 30px rgba(245, 180, 0, 0.18);
+    }
+
+    .arrow {
+        font-size: 20px;
+    }
+
+    .home-link {
+        display: inline-block;
+        margin-top: 22px;
+
+        color: #777777;
+        text-decoration: none;
+
+        font-size: 14px;
+
+        transition: color 0.2s ease;
+    }
+
+    .home-link:hover {
+        color: #f5b400;
+    }
+
+    .note {
+        margin-top: 30px;
+        padding-top: 22px;
+
+        border-top: 1px solid #242424;
+
+        color: #666666;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .note strong {
+        color: #888888;
+    }
+
+    @media (max-width: 600px) {
+
+        body {
+            padding: 15px;
+        }
+
+        .card {
+            padding: 35px 22px;
+            border-radius: 18px;
+        }
+
+        .logo {
+            font-size: 23px;
+            margin-bottom: 30px;
+        }
+
+        .success-icon {
+            width: 75px;
+            height: 75px;
+            font-size: 38px;
+        }
+
+        h1 {
+            font-size: 27px;
+        }
+
+        .description {
+            font-size: 14px;
+        }
+
+        .payment-box {
+            padding: 18px;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<main class="page">
+
+    <section class="card">
+
+        <div class="logo">
+            COEUR<span>STEAM</span>
+        </div>
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>
+            Paiement confirmé
+        </h1>
+
+        <p class="description">
+            Merci pour votre commande.
+            Votre paiement Stripe a bien été confirmé.
+        </p>
+
+        {% if session_id %}
+
+            <div class="payment-box">
+
+                <span class="payment-label">
+                    Référence du paiement
+                </span>
+
+                <strong class="payment-reference">
+                    {{ session_id }}
+                </strong>
+
+                <div class="payment-status">
+                    Paiement confirmé
+                </div>
+
+            </div>
+
+            {% if order_id %}
+
+                <a
+                    class="continue-button"
+                    href="{{ url_for('order_page', order_id=order_id) }}"
+                >
+                    ACCÉDER À MA COMMANDE
+
+                    <span class="arrow">
+                        →
+                    </span>
+                </a>
+
+            {% else %}
+
+                <div class="payment-box">
+
+                    <span class="payment-label">
+                        Statut
+                    </span>
+
+                    <strong class="payment-reference">
+                        Commande en cours de création
+                    </strong>
+
+                </div>
+
+                <p class="description">
+                    Votre paiement a bien été effectué.
+                    Votre commande est en cours de création.
+                </p>
+
+                <a
+                    class="continue-button"
+                    href="/"
+                >
+                    RETOUR À LA BOUTIQUE
+
+                    <span class="arrow">
+                        →
+                    </span>
+                </a>
+
+            {% endif %}
+
+        {% else %}
+
+            <div class="payment-box">
+
+                <span class="payment-label">
+                    Statut
+                </span>
+
+                <strong class="payment-reference">
+                    Référence introuvable
+                </strong>
+
+            </div>
+
+            <p class="description">
+                Votre paiement semble avoir été effectué,
+                mais aucune référence de paiement n'a été reçue.
+            </p>
+
+            <a
+                class="continue-button"
+                href="/"
+            >
+                RETOUR À LA BOUTIQUE
+
+                <span class="arrow">
+                    →
+                </span>
+            </a>
+
+        {% endif %}
+
+        <a
+            class="home-link"
+            href="/"
+        >
+            ← Retour à CoeurSteam
+        </a>
+
+        <div class="note">
+            Conservez votre référence de paiement
+            <strong>Stripe</strong>
+            en cas de besoin.
+        </div>
+
+    </section>
+
+</main>
+```
+
+</body>
+
+</html>

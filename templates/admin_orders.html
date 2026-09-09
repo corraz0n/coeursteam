@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Commandes - CoeurSteam</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #050505;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+
+        .order {
+            background: #111;
+            border: 1px solid #2b2b2b;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .order strong {
+            color: #d4af37;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #d4af37;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>COMMANDES CLIENTS</h1>
+
+    {% if orders %}
+
+        {% for order in orders %}
+
+            <div class="order">
+
+                <div>
+                    <strong>Commande #{{ order["id"] }}</strong>
+                </div>
+
+                <div>
+                    Client : {{ order["email"] or "Email inconnu" }}
+                </div>
+
+                <div>
+                    Montant : {{ "%.2f"|format(order["total"]) }} €
+                </div>
+
+                <div>
+                    Statut : {{ order["status"] }}
+                </div>
+
+                <div>
+                    Date : {{ order["created_at"] }}
+                </div>
+
+                <a
+                    class="button"
+                    href="{{ url_for('order_page', order_id=order['id']) }}"
+                >
+                    VOIR LA DISCUSSION →
+                </a>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>Aucune commande pour le moment.</p>
+
+    {% endif %}
+
+</body>
+</html>
