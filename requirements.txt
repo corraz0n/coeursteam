@@ -1,2 +1,4 @@
+Flask
 stripe
 gunicorn
+python-dotenv
