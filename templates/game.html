@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ game.name }} — CoeurSteam</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .game-page {
+            min-height: 100vh;
+            padding: 120px 6% 70px;
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(212, 175, 55, 0.08),
+                    transparent 40%
+                ),
+                #080808;
+            color: #fff;
+        }
+
+        .game-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 35px;
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.25s ease;
+        }
+
+        .back-button:hover {
+            color: #fff;
+            transform: translateX(-4px);
+        }
+
+        .game-main {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .game-image {
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: #111;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+        }
+
+        .game-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .game-platform {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            color: #d4af37;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .game-info h1 {
+            margin: 0 0 20px;
+            font-size: clamp(36px, 5vw, 62px);
+            line-height: 1;
+            color: #fff;
+        }
+
+        .game-description {
+            margin: 0;
+            color: #b8b8b8;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .game-details {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .detail-title {
+            margin-bottom: 12px;
+            color: #d4af37;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .detail-value {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 800px) {
+
+            .game-page {
+                padding: 100px 20px 50px;
+            }
+
+            .game-main {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .game-info h1 {
+                font-size: 40px;
+            }
+
+            .game-description {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="game-page">
+
+        <div class="game-container">
+
+            <a href="{{ url_for('product_page', product_id='playstation_full_access') }}"
+               class="back-button">
+                ← RETOUR AUX JEUX
+            </a>
+
+
+            <section class="game-main">
+
+                <div class="game-image">
+
+                    <img
+                        src="{{ url_for('static', filename=game.image) }}"
+                        alt="{{ game.name }}"
+                    >
+
+                </div>
+
+
+                <div class="game-info">
+
+                    <div class="game-platform">
+                        {{ game.platform }}
+                    </div>
+
+                    <h1>
+                        {{ game.name }}
+                    </h1>
+
+                    <p class="game-description">
+                        {{ game.description }}
+                    </p>
+
+
+                    <div class="game-details">
+
+                        <div class="detail-title">
+                            Plateforme
+                        </div>
+
+                        <div class="detail-value">
+                            {{ game.platform }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

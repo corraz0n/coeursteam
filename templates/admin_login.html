@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
+
 <title>Administration — CoeurSteam</title>
 
 <style>
@@ -16,327 +16,175 @@
     body {
         margin: 0;
         min-height: 100vh;
-
         display: flex;
         align-items: center;
         justify-content: center;
 
-        padding: 20px;
-
         background:
-            radial-gradient(
-                circle at top,
-                rgba(245, 180, 0, 0.12),
-                transparent 45%
-            ),
+            radial-gradient(circle at top, rgba(255, 193, 7, 0.08), transparent 35%),
             #080808;
 
-        color: #fff;
+        color: #ffffff;
         font-family: Arial, Helvetica, sans-serif;
     }
 
-    .login-container {
+    .admin-container {
         width: 100%;
         max-width: 430px;
+        padding: 20px;
     }
 
-    .logo {
-        text-align: center;
-        margin-bottom: 25px;
-
-        font-size: 30px;
-        font-weight: 900;
-        letter-spacing: 3px;
-    }
-
-    .logo span {
-        color: #f5b400;
-    }
-
-    .login-card {
-        padding: 35px;
-
-        background: #111;
-
-        border: 1px solid rgba(245, 180, 0, 0.35);
+    .admin-box {
+        background: rgba(18, 18, 18, 0.96);
+        border: 1px solid rgba(255, 193, 7, 0.35);
         border-radius: 18px;
+        padding: 42px 35px;
+
+        text-align: center;
 
         box-shadow:
-            0 25px 70px rgba(0, 0, 0, 0.65);
+            0 0 35px rgba(255, 193, 7, 0.08),
+            0 20px 60px rgba(0, 0, 0, 0.6);
     }
 
-    .admin-icon {
-        width: 70px;
-        height: 70px;
-
-        margin: 0 auto 22px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        border: 2px solid #f5b400;
-        border-radius: 50%;
-
-        color: #f5b400;
-        font-size: 30px;
+    .crown {
+        font-size: 42px;
+        margin-bottom: 12px;
     }
 
     h1 {
-        margin: 0 0 8px;
-
-        text-align: center;
-
-        font-size: 27px;
+        margin: 0;
+        color: #ffc107;
+        font-size: 28px;
+        letter-spacing: 1px;
     }
 
     .subtitle {
-        margin: 0 0 28px;
-
-        text-align: center;
-
-        color: #888;
-        line-height: 1.5;
+        margin-top: 10px;
+        color: #999;
         font-size: 14px;
     }
 
-    .field {
-        margin-bottom: 18px;
-    }
+    .warning {
+        margin: 28px 0;
+        padding: 16px;
 
-    .field label {
-        display: block;
+        background: rgba(255, 193, 7, 0.06);
+        border: 1px solid rgba(255, 193, 7, 0.22);
+        border-radius: 12px;
 
-        margin-bottom: 8px;
-
-        color: #aaa;
-
+        color: #d0d0d0;
         font-size: 13px;
-        font-weight: bold;
+        line-height: 1.6;
     }
 
-    .field input {
+    .warning strong {
+        color: #ffc107;
+    }
+
+    input {
         width: 100%;
+        padding: 14px 16px;
 
-        padding: 14px;
-
-        border: 1px solid #303030;
-        border-radius: 9px;
-
-        outline: none;
-
-        background: #080808;
-        color: #fff;
-
-        font-family: inherit;
-        font-size: 14px;
-
-        transition: 0.2s ease;
-    }
-
-    .field input:focus {
-        border-color: #f5b400;
-
-        box-shadow:
-            0 0 0 2px rgba(245, 180, 0, 0.08);
-    }
-
-    .login-button {
-        width: 100%;
-
-        padding: 15px;
-
-        border: 0;
+        background: #0d0d0d;
+        border: 1px solid #333;
         border-radius: 10px;
 
-        background: #f5b400;
-        color: #080808;
-
+        color: white;
         font-size: 14px;
-        font-weight: 900;
+
+        outline: none;
+        transition: 0.2s;
+    }
+
+    input:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 12px rgba(255, 193, 7, 0.12);
+    }
+
+    button {
+        width: 100%;
+        margin-top: 16px;
+        padding: 14px;
+
+        background: linear-gradient(135deg, #ffc107, #d99f00);
+        border: none;
+        border-radius: 10px;
+
+        color: #111;
+        font-size: 15px;
+        font-weight: bold;
 
         cursor: pointer;
-
-        transition: 0.2s ease;
+        transition: 0.2s;
     }
 
-    .login-button:hover {
-        background: #ffd34f;
+    button:hover {
         transform: translateY(-1px);
+        box-shadow: 0 8px 25px rgba(255, 193, 7, 0.18);
     }
 
-    .error {
-        margin-bottom: 18px;
-
-        padding: 12px;
-
-        border: 1px solid rgba(255, 70, 70, 0.3);
-        border-radius: 9px;
-
-        background: rgba(255, 70, 70, 0.08);
-
-        color: #ff7777;
-
-        text-align: center;
-        font-size: 13px;
-    }
-
-    .security {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        gap: 7px;
-
-        margin-top: 22px;
-
-        color: #666;
-
+    .footer {
+        margin-top: 25px;
+        color: #555;
         font-size: 11px;
+        letter-spacing: 0.5px;
     }
 
-    .security-dot {
-        width: 7px;
-        height: 7px;
-
-        border-radius: 50%;
-
-        background: #48d26b;
-    }
-
-    .back {
-        display: block;
-
-        margin-top: 20px;
-
-        color: #777;
-
-        text-align: center;
-        text-decoration: none;
-
-        font-size: 13px;
-    }
-
-    .back:hover {
-        color: #f5b400;
-    }
-
-    @media (max-width: 500px) {
-        .login-card {
-            padding: 25px 20px;
-        }
-
-        .logo {
-            font-size: 25px;
-        }
+    .owner {
+        color: #ffc107;
     }
 </style>
-```
+
 
 </head>
 
 <body>
 
-<div class="login-container">
 
-```
-<div class="logo">
-    COEUR<span>STEAM</span>
-</div>
+<div class="admin-container">
 
-<div class="login-card">
+    <div class="admin-box">
 
-    <div class="admin-icon">
-        🔒
-    </div>
+        <div class="crown">♛</div>
 
-    <h1>
-        Administration
-    </h1>
+        <h1>ESPACE ADMINISTRATION</h1>
 
-    <p class="subtitle">
-        Accès réservé au propriétaire de CoeurSteam.
-    </p>
-
-
-    {% if error %}
-
-        <div class="error">
-            {{ error }}
+        <div class="subtitle">
+            Accès sécurisé — CoeurSteam
         </div>
 
-    {% endif %}
-
-
-    <form
-        method="POST"
-        action="{{ url_for('admin_login') }}"
-    >
-
-        <div class="field">
-
-            <label for="username">
-                IDENTIFIANT
-            </label>
-
-            <input
-                type="text"
-                id="username"
-                name="username"
-                autocomplete="username"
-                required
-            >
-
+        <div class="warning">
+            ⚠️ <strong>Espace strictement réservé au propriétaire du site.</strong>
+            <br>
+            Cet espace permet de gérer les commandes et les discussions clients.
+            Toute tentative d'accès non autorisée est interdite.
         </div>
 
-
-        <div class="field">
-
-            <label for="password">
-                MOT DE PASSE
-            </label>
+        <form method="POST">
 
             <input
                 type="password"
-                id="password"
                 name="password"
-                autocomplete="current-password"
+                placeholder="Mot de passe administrateur"
                 required
+                autocomplete="current-password"
             >
 
+            <button type="submit">
+                SE CONNECTER
+            </button>
+
+        </form>
+
+        <div class="footer">
+            DÉVELOPPÉ PAR <span class="owner">CORRAZ0N</span>
         </div>
-
-
-        <button
-            type="submit"
-            class="login-button"
-        >
-            SE CONNECTER →
-        </button>
-
-    </form>
-
-
-    <div class="security">
-
-        <span class="security-dot"></span>
-
-        Connexion sécurisée
 
     </div>
 
 </div>
 
-
-<a
-    href="/"
-    class="back"
->
-    ← Retour à CoeurSteam
-</a>
-```
-
-</div>
 
 </body>
 </html>

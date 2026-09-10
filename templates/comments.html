@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Commentaires — CoeurSteam
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <style>
+
+        /* =====================================================
+           PAGE COMMENTAIRES
+        ====================================================== */
+
+        .comments-page {
+            min-height: 100vh;
+
+            padding: 120px 6% 60px;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(255, 193, 7, 0.08),
+                    transparent 35%
+                ),
+                #080808;
+
+            color: #fff;
+        }
+
+
+        .comments-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           RETOUR
+        ====================================================== */
+
+        .back-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 40px;
+
+            color: #d4af37;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            transition: 0.25s ease;
+        }
+
+
+        .back-button:hover {
+            color: #fff;
+
+            transform: translateX(-4px);
+        }
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        .comments-header {
+            margin-bottom: 40px;
+        }
+
+
+        .comments-header .eyebrow {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin: 0 0 15px;
+
+            color: #d4af37;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        .comments-header .eyebrow span {
+            width: 8px;
+
+            height: 8px;
+
+            display: inline-block;
+
+            border-radius: 50%;
+
+            background: #d4af37;
+        }
+
+
+        .comments-header h1 {
+            margin: 0 0 15px;
+
+            color: #fff;
+
+            font-size: clamp(
+                36px,
+                5vw,
+                58px
+            );
+
+            line-height: 1.05;
+        }
+
+
+        .comments-header > p:last-child {
+            margin: 0;
+
+            color: #888;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+        }
+
+
+        /* =====================================================
+           FORMULAIRE
+        ====================================================== */
+
+        .comment-form {
+            margin-bottom: 45px;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #121212,
+                    #0d0d0d
+                );
+
+            border:
+                1px solid
+                rgba(212, 175, 55, 0.2);
+
+            box-shadow:
+                0 15px 45px
+                rgba(0, 0, 0, 0.25);
+        }
+
+
+        .comment-form h2 {
+            margin: 0 0 20px;
+
+            color: #fff;
+
+            font-size: 24px;
+        }
+
+
+        .comment-form form {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        .comment-form textarea {
+            width: 100%;
+
+            min-height: 150px;
+
+            box-sizing: border-box;
+
+            resize: vertical;
+
+            padding: 16px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.1);
+
+            background: #080808;
+
+            color: #fff;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            outline: none;
+
+            transition: 0.25s ease;
+        }
+
+
+        .comment-form textarea:focus {
+            border-color:
+                rgba(212, 175, 55, 0.6);
+
+            box-shadow:
+                0 0 0 2px
+                rgba(212, 175, 55, 0.05);
+        }
+
+
+        .comment-form textarea::placeholder {
+            color: #666;
+        }
+
+
+        .comment-form button {
+            align-self: flex-start;
+
+            border: none;
+
+            border-radius: 10px;
+
+            padding: 14px 22px;
+
+            background: #d4af37;
+
+            color: #080808;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+
+        .comment-form button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(212, 175, 55, 0.2);
+        }
+
+
+        /* =====================================================
+           LISTE DES COMMENTAIRES
+        ====================================================== */
+
+        .comments-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        .site-comment {
+            padding: 22px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #121212,
+                    #0d0d0d
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.07);
+
+            transition: 0.25s ease;
+        }
+
+
+        .site-comment:hover {
+            border-color:
+                rgba(212, 175, 55, 0.25);
+
+            transform: translateY(-2px);
+        }
+
+
+        .site-comment p {
+            margin: 0 0 12px;
+
+            color: #ddd;
+
+            line-height: 1.7;
+
+            white-space: pre-line;
+
+            word-break: break-word;
+        }
+
+
+        .site-comment small {
+            color: #666;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           AUCUN COMMENTAIRE
+        ====================================================== */
+
+        .no-comments {
+            margin: 0;
+
+            padding: 35px;
+
+            border-radius: 14px;
+
+            background: #111;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.06);
+
+            color: #666;
+
+            text-align: center;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 600px) {
+
+            .comments-page {
+                padding:
+                    100px
+                    20px
+                    50px;
+            }
+
+
+            .comment-form {
+                padding: 22px;
+            }
+
+
+            .comment-form h2 {
+                font-size: 21px;
+            }
+
+
+            .comment-form button {
+                width: 100%;
+            }
+
+
+            .site-comment {
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="comments-page">
+
+
+        <div class="comments-container">
+
+
+            <!-- =================================================
+                 RETOUR
+            ================================================== -->
+
+            <a
+                href="/"
+                class="back-button"
+            >
+                ← RETOUR AU CATALOGUE
+            </a>
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <div class="comments-header">
+
+
+                <p class="eyebrow">
+
+                    <span></span>
+
+                    AVIS CLIENTS
+
+                </p>
+
+
+                <h1>
+                    COMMENTAIRES
+                </h1>
+
+
+                <p>
+                    Découvrez les avis laissés par les clients
+                    de CoeurSteam.
+                </p>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 FORMULAIRE
+            ================================================== -->
+
+            <section class="comment-form">
+
+
+                <h2>
+                    LAISSER UN COMMENTAIRE
+                </h2>
+
+
+                <form method="POST">
+
+
+                    <textarea
+                        name="comment"
+                        maxlength="1000"
+                        required
+                        placeholder="Écrivez votre commentaire..."
+                    ></textarea>
+
+
+                    <button
+                        type="submit"
+                    >
+                        PUBLIER LE COMMENTAIRE
+                    </button>
+
+
+                </form>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 COMMENTAIRES
+            ================================================== -->
+
+            <section class="comments-list">
+
+
+                {% if comments %}
+
+
+                    {% for comment in comments %}
+
+
+                        <article class="site-comment">
+
+
+                            <p>
+                                {{ comment["comment"] }}
+                            </p>
+
+
+                            <small>
+                                {{ comment["created_at"] }}
+                            </small>
+
+
+                        </article>
+
+
+                    {% endfor %}
+
+
+                {% else %}
+
+
+                    <p class="no-comments">
+                        Aucun commentaire pour le moment.
+                    </p>
+
+
+                {% endif %}
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

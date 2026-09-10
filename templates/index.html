@@ -124,6 +124,10 @@
                 Accueil
             </a>
 
+<a href="/comments">
+    COMMENTAIRES
+</a>
+
             <a href="/steam">
                 Steam
             </a>
@@ -463,19 +467,20 @@
 
                 {% for product in trending_products %}
 
-                <article
-                    class="product-card trending-card"
-                    data-product-id="{{ product.id }}"
-                >
+<article
+    class="product-card"
+    data-product-id="{{ product.id }}"
+>
 
-                    <div class="product-image">
+                   <div class="product-image">
 
-                        <img
-                            src="{{ url_for('static', filename=product.image) }}"
-                            alt="{{ product.name }}"
-                            loading="lazy"
-                        >
-
+    <a href="{{ url_for('product_page', product_id=product.id) }}">
+        <img 
+            src="{{ url_for('static', filename=product.image) }}" 
+            alt="{{ product.name }}" 
+            loading="lazy" 
+        >
+    </a>
                         <span class="product-tag">
                             {{ product.tag }}
                         </span>
@@ -486,6 +491,51 @@
 
                     </div>
 
+<!-- =================================================
+     COMMENTAIRES PUBLICS
+================================================== -->
+
+<section class="public-comments">
+
+    <h2>
+        AVIS & COMMENTAIRES
+    </h2>
+
+    <p class="public-comments-subtitle">
+        Découvrez les commentaires laissés par les clients.
+    </p>
+
+    {% if comments %}
+
+        <div class="comment-list">
+
+            {% for comment in comments %}
+
+                <div class="comment-item">
+
+                    <p class="comment-text">
+                        {{ comment["comment"] }}
+                    </p>
+
+                    <span class="comment-date">
+                        {{ comment["created_at"] }}
+                    </span>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <p class="no-comments">
+            Aucun commentaire pour le moment.
+        </p>
+
+    {% endif %}
+
+</section>
 
                     <div class="product-content">
 
@@ -810,79 +860,79 @@
 
             {% if products %}
 
-            <div class="products-grid">
+<div class="products-grid">
 
-                {% for product in products %}
+    {% for product in products %}
 
-                <article
-                    class="product-card"
+    <article class="product-card" data-product-id="{{ product.id }}">
+
+        <div class="product-image">
+
+            <a href="{{ url_for('product_page', product_id=product.id) }}">
+
+                <img
+                    src="{{ url_for('static', filename=product.image) }}"
+                    alt="{{ product.name }}"
+                    loading="lazy"
+                >
+
+            </a>
+
+            <span class="product-tag">
+                {{ product.tag }}
+            </span>
+
+        </div>
+
+
+        <div class="product-content">
+
+            <h3>
+                {{ product.name }}
+            </h3>
+
+
+            <div class="product-footer">
+
+                <div class="price">
+
+                    <small>
+                        À PARTIR DE
+                    </small>
+
+                    <strong>
+                        {{ "%.2f"|format(product.price)|replace(".", ",") }} €
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="add-button"
                     data-product-id="{{ product.id }}"
                 >
 
-                    <div class="product-image">
+                    AJOUTER
 
-                        <img 
-    src="{{ url_for('static', filename=product.image) }}" 
-    alt="{{ product.name }}" 
-    loading="lazy"
->
+                    <span>
+                        +
+                    </span>
 
-
-                        <span class="product-tag">
-                            {{ product.tag }}
-                        </span>
-
-                    </div>
-
-
-                    <div class="product-content">
-
-                        <h3>
-                            {{ product.name }}
-                        </h3>
-
-
-                        <div class="product-footer">
-
-                            <div class="price">
-
-                                <small>
-                                    À PARTIR DE
-                                </small>
-
-                                <strong>
-                                    {{ "%.2f"|format(product.price)|replace(".", ",") }} €
-                                </strong>
-
-                            </div>
-
-
-                            <button
-                                type="button"
-                                class="add-button"
-                                data-product-id="{{ product.id }}"
-                            >
-
-                                AJOUTER
-
-                                <span>
-                                    +
-                                </span>
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-                {% endfor %}
+                </button>
 
             </div>
 
+        </div>
 
-            {% else %}
+    </article>
+
+    {% endfor %}
+
+</div>
+
+
+{% else %}
 
             <div class="empty-catalogue">
 
@@ -1060,43 +1110,49 @@
 
         <div class="cart-summary">
 
-            <div>
+    <label for="orderComment" class="order-comment-label">
+        COMMENTAIRE
+    </label>
 
-                <span>
-                    TOTAL
-                </span>
+    <textarea
+        id="orderComment"
+        class="order-comment"
+        maxlength="1000"
+        placeholder="Ajoutez un commentaire à votre commande..."
+    ></textarea>
 
-                <strong id="cartTotal">
-                    0,00 €
-                </strong>
+    <div>
+        <span>
+            TOTAL
+        </span>
 
-            </div>
+        <strong id="cartTotal">
+            0,00 €
+        </strong>
+    </div>
 
+    <button
+        type="button"
+        class="checkout-button"
+        onclick="checkout()"
+    >
 
-            <button
-                type="button"
-                class="checkout-button"
-                onclick="checkout()"
-            >
+        CONTINUER VERS LE PAIEMENT
 
-                CONTINUER VERS LE PAIEMENT
+        <span>
+            →
+        </span>
 
-                <span>
-                    →
-                </span>
+    </button>
 
-            </button>
+    <p class="checkout-note">
 
+        Vous serez redirigé vers Stripe
+        pour finaliser votre commande.
 
-            <p class="checkout-note">
+    </p>
 
-                Vous serez redirigé vers Stripe
-                pour finaliser votre commande.
-
-            </p>
-
-        </div>
-
+</div>
     </aside>
 
 

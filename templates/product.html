@@ -1,0 +1,1033 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ product.name }} — CoeurSteam</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <style>
+
+/* =====================================================
+   COMMENTAIRES PUBLICS
+===================================================== */
+
+.public-comments {
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 16px;
+    background:
+        linear-gradient(
+            145deg,
+            #121212,
+            #0d0d0d
+        );
+    border: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+.public-comments h2 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: 28px;
+}
+
+.public-comments-subtitle {
+    margin: 0 0 25px;
+    color: #888;
+}
+
+.comment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.comment-item {
+    padding: 18px;
+    border-radius: 12px;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.comment-text {
+    margin: 0 0 8px;
+    color: #ddd;
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+.comment-date {
+    color: #777;
+    font-size: 12px;
+}
+
+.no-comments {
+    margin: 0;
+    color: #777;
+    font-style: italic;
+}
+
+        .product-page {
+            min-height: 100vh;
+            padding: 120px 6% 60px;
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(255, 193, 7, 0.08),
+                    transparent 35%
+                ),
+                #080808;
+            color: #fff;
+        }
+
+
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s ease;
+        }
+
+
+        .back-button:hover {
+            color: #fff;
+            transform: translateX(-4px);
+        }
+
+
+        .product-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 70px;
+        }
+
+
+        .product-main-image {
+            overflow: hidden;
+            border-radius: 18px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            background: #111;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .product-main-image img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+
+        .product-info h1 {
+            font-size: clamp(30px, 4vw, 52px);
+            line-height: 1.05;
+            margin: 0 0 20px;
+            color: #fff;
+        }
+
+
+        .product-platform {
+            color: #d4af37;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+        .product-description {
+            color: #bdbdbd;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            white-space: pre-line;
+        }
+
+
+        .product-price {
+            font-size: 34px;
+            font-weight: 800;
+            color: #d4af37;
+            margin-bottom: 25px;
+        }
+
+
+        .product-add-button {
+            border: none;
+            border-radius: 10px;
+            padding: 15px 28px;
+            background: #d4af37;
+            color: #080808;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+
+        .product-add-button:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 10px 30px rgba(212, 175, 55, 0.25);
+        }
+
+
+        /* =====================================================
+           DETAILS STEAM
+        ====================================================== */
+
+        .steam-details {
+            margin-top: 20px;
+            padding: 32px;
+            border-radius: 16px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #121212,
+                    #0d0d0d
+                );
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .steam-details h2 {
+            margin: 0 0 18px;
+            color: #fff;
+            font-size: 28px;
+        }
+
+
+        .steam-details p {
+            margin: 0;
+            color: #aaa;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+
+        /* =====================================================
+           JEUX PLAYSTATION
+        ====================================================== */
+
+        .games-section {
+            margin-top: 40px;
+        }
+
+
+        .games-section-header {
+            margin-bottom: 30px;
+        }
+
+
+        .games-section-header h2 {
+            margin: 0 0 8px;
+            font-size: 34px;
+            color: #fff;
+        }
+
+
+        .games-section-header p {
+            margin: 0;
+            color: #888;
+        }
+
+
+        .games-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+
+        .game-card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 20px;
+            border-radius: 14px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #121212,
+                    #0d0d0d
+                );
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-decoration: none;
+            color: #fff;
+            transition: 0.25s ease;
+        }
+
+
+        .game-card:hover {
+            transform: translateY(-3px);
+            border-color:
+                rgba(212, 175, 55, 0.45);
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.35);
+        }
+
+
+        .game-number {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background:
+                rgba(212, 175, 55, 0.1);
+            border:
+                1px solid rgba(212, 175, 55, 0.3);
+            color: #d4af37;
+            font-weight: 800;
+        }
+
+
+        .game-info {
+            flex: 1;
+        }
+
+
+        .game-info h3 {
+            margin: 0 0 5px;
+            font-size: 17px;
+            color: #fff;
+        }
+
+
+        .game-info span {
+            color: #888;
+            font-size: 13px;
+        }
+
+
+        .game-arrow {
+            color: #d4af37;
+            font-size: 20px;
+            transition: 0.25s ease;
+        }
+
+
+        .game-card:hover .game-arrow {
+            transform: translateX(4px);
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 800px) {
+
+            .product-page {
+                padding: 100px 20px 50px;
+            }
+
+
+            .product-main {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .product-price {
+                font-size: 30px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .product-info h1 {
+                font-size: 32px;
+            }
+
+
+            .steam-details {
+                padding: 22px;
+            }
+
+
+            .games-section-header h2 {
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="product-page">
+
+
+        <div class="product-container">
+
+
+            <!-- RETOUR -->
+
+            <a
+                href="/"
+                class="back-button"
+            >
+                ← RETOUR AU CATALOGUE
+            </a>
+
+
+            <!-- =================================================
+                 INFORMATIONS PRINCIPALES
+            ================================================== -->
+
+            <section class="product-main">
+
+
+                <!-- IMAGE -->
+
+                <div class="product-main-image">
+
+                    <img
+                        src="{{ url_for('static', filename=product.image) }}"
+                        alt="{{ product.name }}"
+                    >
+
+                </div>
+
+
+                <!-- INFORMATIONS -->
+
+                <div class="product-info">
+
+
+                    {% if product.id == "playstation_full_access" %}
+
+
+                        <div class="product-platform">
+                            PlayStation 4 / PlayStation 5
+                        </div>
+
+
+                        <h1>
+                            {{ product.name }}
+                        </h1>
+
+
+                        <p class="product-description">
+                            {{ product.description }}
+                        </p>
+
+
+                    {% else %}
+
+
+                        <div class="product-platform">
+                            STEAM
+                        </div>
+
+
+                        <h1>
+                            {{ product.name }}
+                        </h1>
+
+
+                        <p class="product-description">
+                            {{ product.description }}
+                        </p>
+
+
+                    {% endif %}
+
+
+                    <!-- PRIX -->
+
+                    <div class="product-price">
+
+                        {{ "%.2f"|format(product.price)|replace(".", ",") }} €
+
+                    </div>
+
+
+                    <!-- PANIER -->
+
+                    <button
+                        type="button"
+                        class="product-add-button"
+                        data-product-id="{{ product.id }}"
+                    >
+                        AJOUTER AU PANIER
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 PLAYSTATION UNIQUEMENT
+            ================================================== -->
+
+            {% if product.id == "playstation_full_access" %}
+
+
+                <section class="games-section">
+
+
+                    <div class="games-section-header">
+
+                        <h2>
+                            JEUX INCLUS
+                        </h2>
+
+                        <p>
+                            Cliquez sur un jeu pour découvrir
+                            tous ses détails.
+                        </p>
+
+                    </div>
+
+
+                    <div class="games-grid">
+
+
+                        <!-- 01 -->
+
+                        <a
+                            href="{{ url_for(
+                                'game_page',
+                                game_id='gta-online'
+                            ) }}"
+                            class="game-card"
+                        >
+
+                            <div class="game-number">
+                                01
+                            </div>
+
+
+                            <div class="game-info">
+
+                                <h3>
+                                    Grand Theft Auto Online
+                                </h3>
+
+                                <span>
+                                    PlayStation 5
+                                </span>
+
+                            </div>
+
+
+                            <div class="game-arrow">
+                                →
+                            </div>
+
+                        </a>
+
+    
+
+                        <!-- 02 -->
+
+                        <a
+                            href="{{ url_for(
+                                'game_page',
+                                game_id='black-ops-2'
+                            ) }}"
+                            class="game-card"
+                        >
+
+                            <div class="game-number">
+                                02
+                            </div>
+
+
+                            <div class="game-info">
+
+                                <h3>
+                                    Call of Duty: Black Ops II
+                                </h3>
+
+                                <span>
+                                    PlayStation
+                                </span>
+
+                            </div>
+
+
+                            <div class="game-arrow">
+                                →
+                            </div>
+
+                        </a>
+
+
+                        <!-- 03 -->
+
+                        <a
+                            href="{{ url_for(
+                                'game_page',
+                                game_id='subnautica'
+                            ) }}"
+                            class="game-card"
+                        >
+
+                            <div class="game-number">
+                                03
+                            </div>
+
+
+                            <div class="game-info">
+
+                                <h3>
+                                    Subnautica
+                                </h3>
+
+                                <span>
+                                    PlayStation
+                                </span>
+
+                            </div>
+
+
+                            <div class="game-arrow">
+                                →
+                            </div>
+
+                        </a>
+
+
+                        <!-- 04 -->
+
+                        <a
+                            href="{{ url_for(
+                                'game_page',
+                                game_id='firewatch'
+                            ) }}"
+                            class="game-card"
+                        >
+
+                            <div class="game-number">
+                                04
+                            </div>
+
+
+                            <div class="game-info">
+
+                                <h3>
+                                    Firewatch
+                                </h3>
+
+                                <span>
+                                    PlayStation
+                                </span>
+
+                            </div>
+
+
+                            <div class="game-arrow">
+                                →
+                            </div>
+
+                        </a>
+
+
+                        <!-- 05 -->
+
+                        <a
+                            href="{{ url_for(
+                                'game_page',
+                                game_id='goat-simulator-3'
+                            ) }}"
+                            class="game-card"
+                        >
+
+                            <div class="game-number">
+                                05
+                            </div>
+
+
+                            <div class="game-info">
+
+                                <h3>
+                                    Goat Simulator 3
+                                </h3>
+
+                                <span>
+                                    PlayStation
+                                </span>
+
+                            </div>
+
+
+                            <div class="game-arrow">
+                                →
+                            </div>
+
+                        </a>
+
+
+                        <!-- 06 -->
+
+                        <a
+                            href="{{ url_for(
+                                'game_page',
+                                game_id='goat-simulator'
+                            ) }}"
+                            class="game-card"
+                        >
+
+                            <div class="game-number">
+                                06
+                            </div>
+
+
+                            <div class="game-info">
+
+                                <h3>
+                                    Goat Simulator
+                                </h3>
+
+                                <span>
+                                    PlayStation
+                                </span>
+
+                            </div>
+
+
+                            <div class="game-arrow">
+                                →
+                            </div>
+
+                        </a>
+
+
+                        <!-- 07 -->
+
+                        <a
+                            href="{{ url_for(
+                                'game_page',
+                                game_id='plants-vs-zombies-neighborville'
+                            ) }}"
+                            class="game-card"
+                        >
+
+                            <div class="game-number">
+                                07
+                            </div>
+
+
+                            <div class="game-info">
+
+                                <h3>
+                                    Plants vs. Zombies:
+                                    La Bataille de Neighborville
+                                </h3>
+
+                                <span>
+                                    PlayStation
+                                </span>
+
+                            </div>
+
+
+                            <div class="game-arrow">
+                                →
+                            </div>
+
+                        </a>
+
+
+                        <!-- 08 -->
+
+                        <a
+                            href="{{ url_for(
+                                'game_page',
+                                game_id='the-exit-8'
+                            ) }}"
+                            class="game-card"
+                        >
+
+                            <div class="game-number">
+                                08
+                            </div>
+
+
+                            <div class="game-info">
+
+                                <h3>
+                                    The Exit 8
+                                </h3>
+
+                                <span>
+                                    PlayStation
+                                </span>
+
+                            </div>
+
+
+                            <div class="game-arrow">
+                                →
+                            </div>
+
+                        </a>
+
+
+                        <!-- 09 -->
+
+                        <a
+                            href="{{ url_for(
+                                'game_page',
+                                game_id='i-am-bread'
+                            ) }}"
+                            class="game-card"
+                        >
+
+                            <div class="game-number">
+                                09
+                            </div>
+
+
+                            <div class="game-info">
+
+                                <h3>
+                                    I Am Bread
+                                </h3>
+
+                                <span>
+                                    PlayStation
+                                </span>
+
+                            </div>
+
+
+                            <div class="game-arrow">
+                                →
+                            </div>
+
+                        </a>
+
+
+                        <!-- 10 -->
+
+                        <a
+                            href="{{ url_for(
+                                'game_page',
+                                game_id='suicide-guy'
+                            ) }}"
+                            class="game-card"
+                        >
+
+                            <div class="game-number">
+                                10
+                            </div>
+
+
+                            <div class="game-info">
+
+                                <h3>
+                                    Suicide Guy
+                                </h3>
+
+                                <span>
+                                    PlayStation
+                                </span>
+
+                            </div>
+
+
+                            <div class="game-arrow">
+                                →
+                            </div>
+
+                        </a>
+
+
+                    </div>
+
+                </section>
+
+
+            {% else %}
+
+
+                <!-- =================================================
+                     DETAILS STEAM
+                ================================================== -->
+
+                <section class="steam-details">
+
+                    <h2>
+                        À PROPOS DE {{ product.name }}
+                    </h2>
+
+
+                    <p>
+                        {{ product.description }}
+                    </p>
+
+                </section>
+
+
+            {% endif %}
+
+
+        </div>
+
+    </main>
+
+<!-- =====================================================
+     PANIER
+====================================================== -->
+
+<div
+    id="cartOverlay"
+    class="cart-overlay"
+    onclick="toggleCart()"
+></div>
+
+
+<aside
+    id="cartDrawer"
+    class="cart-drawer"
+>
+
+    <div class="cart-header">
+
+        <div>
+
+            <p class="eyebrow">
+
+                <span></span>
+
+                COMMANDE
+
+            </p>
+
+
+            <h3>
+                Votre panier
+            </h3>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="close-cart"
+            onclick="toggleCart()"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div
+        id="cartItems"
+        class="cart-items"
+    >
+
+        <div class="empty-cart">
+
+            <span>
+                ♡
+            </span>
+
+            <p>
+                Votre panier est vide.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="cart-summary">
+
+        <div>
+
+            <span>
+                TOTAL
+            </span>
+
+            <strong id="cartTotal">
+                0,00 €
+            </strong>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="checkout-button"
+            onclick="checkout()"
+        >
+
+            CONTINUER VERS LE PAIEMENT
+
+            <span>
+                →
+            </span>
+
+        </button>
+
+
+        <p class="checkout-note">
+
+            Vous serez redirigé vers Stripe
+            pour finaliser votre commande.
+
+        </p>
+
+    </div>
+
+</aside>
+
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+
+</body>
+
+</html>
+```
